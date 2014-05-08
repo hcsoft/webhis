@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:s="http://www.springframework.org/schema/security"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:cache="http://www.springframework.org/schema/cache"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/security
+        http://www.springframework.org/schema/security/spring-security-3.2.xsd
+        http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache-3.2.xsd
+        ">
+	<import resource="hbt.xml" />
+	<context:component-scan base-package="hcsoft">
+		<context:include-filter type="annotation"
+			expression="org.springframework.stereotype.Controller" />
+	</context:component-scan>
+
+	<bean id="templateResolver"
+		class="org.thymeleaf.templateresolver.ServletContextTemplateResolver">
+		<property name="prefix" value="/templates/" />
+		<property name="suffix" value=".html" />
+		<property name="templateMode" value="HTML5" />
+	</bean>
+	<bean
+		class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+		<property name="messageConverters">
+			<list>
+				<ref bean="mappingJacksonHttpMessageConverter" />
+			</list>
+		</property>
+	</bean>
+	<bean id="mappingJacksonHttpMessageConverter"
+		class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter" />
+
+	<bean id="templateEngine" class="org.thymeleaf.spring3.SpringTemplateEngine">
+		<property name="templateResolver" ref="templateResolver" />
+	</bean>
+
+
+	<s:http auto-config='true'>
+		<s:custom-filter before="FORM_LOGIN_FILTER" ref="ajaxLoginFilter" />
+		<s:logout delete-cookies="JSESSIONID" />
+		<s:intercept-url pattern="/spring/**" access="ROLE_USER" />
+		<s:session-management>
+			<s:concurrency-control max-sessions="1"
+				error-if-maximum-exceeded="true" />
+		</s:session-management>
+		<s:form-login login-processing-url="/spring/login111" />
+	</s:http>
+
+
+
+	<s:authentication-manager alias="authenticationManager">
+		<s:authentication-provider>
+			<s:jdbc-user-service data-source-ref="dataSource"
+				users-by-username-query=" select username, password, enabled from users where username = ? "
+				group-authorities-by-username-query="
+				select   g.id, g.group_name, ga.authority 
+				  from   groups g, group_members gm, group_authorities ga
+				where   gm.username = ? and g.id = ga.group_id and g.id = gm.group_id
+				" />
+		</s:authentication-provider>
+	</s:authentication-manager>
+	<bean id="ajaxLoginFilter"
+		class="org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter">
+		<property name="authenticationManager" ref="authenticationManager" />
+		<property name="authenticationFailureHandler" ref="ajaxFailureHandler" />
+		<property name="authenticationSuccessHandler" ref="ajaxSuccessHandler" />
+		<property name="filterProcessesUrl" value="/spring/login" />
+	</bean>
+	<bean id="ajaxFailureHandler" class="hcsoft.security.AjaxAuthenticationFailureHandler" />
+	<bean id="ajaxSuccessHandler" class="hcsoft.security.AjaxAuthenticationSuccessHandler" />
+
+
+	<bean id="ehCacheManager"
+		class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean"
+		p:configLocation="classpath:ehcache.xml" p:shared="true" />
+
+	<bean id="cacheManager" class="org.springframework.cache.ehcache.EhCacheCacheManager"
+		p:cacheManager-ref="ehCacheManager" />
+
+	<cache:annotation-driven cache-manager="cacheManager" />
+
+	<bean id="cacheinit" class="hcsoft.cache.CacheInit" scope="singleton"
+		init-method="init">
+	</bean>
+</beans>

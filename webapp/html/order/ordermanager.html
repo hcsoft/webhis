@@ -1,0 +1,156 @@
+<!-- <script src="js/.js"></script> -->
+<div ng-controller="orderCtrl">
+	<div class='gridbuttonDiv'>
+		<button ng-click='confirm()' class='btn'>
+			<img src="img/icons/edit_add.png" />确认订单
+		</button>
+		<button ng-click='cancel()' class='btn'>
+			<img src="img/icons/pencil.png" />取消订单
+		</button>
+		<button ng-click=deal() class='btn'>
+			<img src="img/icons/edit_remove.png" />订单成交
+		</button>
+		<select ng-model="queryType" class='queryselect'>
+			<option value="">-- 选择查询项 --</option>
+			<option value="0">订单预定</option>
+			<option value="1">订单确认</option>
+			<option value="2">订单取消</option>
+			<option value="3">订单成交</option>
+		</select>
+		<!-- <input type='text' ng-model='queryItem' class='queryinput'> -->
+		<button ng-click='query()' class='btn btn_add'>
+			<img src="img/icons/query.png" />查询
+		</button>
+	</div>
+	<div class="gridStyle" ng-grid="gridOptions"></div>
+	<div>
+		<div class='totalText'>共{{page.rowcount}}行{{page.pagecount}}页</div>
+		<pagination first-text='首页' previous-text='前一页' next-text='下一页'
+			last-text='尾页' boundary-links="true" total-items="page.rowcount"
+			num-pages="page.pagecount" page="page.currentpage"
+			items-per-page="page.pagesize"></pagination>
+	</div>
+	<script type="text/ng-template" id="orderContent.html">
+		<div class='closebuttondiv'>
+			<a ng-click='close()' class="panel-tool-close" href="javascript:void(0)"></a>
+		</div>
+		<div class='modal-header'>
+			<img ng-src="{{ico}}"/><span style='margin-left:4px;'>{{title}}</span>
+		</div>
+		<div class="modal-body">
+			<table>
+				<tr>
+					<td colspan=2 style='align:center;'>
+						<alert type="alerttype" ng-show='showalert'>{{msg}}</alert>
+					</td>
+				</tr>
+				<tr>
+					<td  class='table-right-head'>
+					产品类型：
+					</td>
+					<td class='table-left-head'>
+						<input type='text' ng-model='edit.typname'  ng-readonly=true>
+					</td>
+				</tr>
+				<tr>
+					<td class='table-right-head'>
+					产品名称：
+					</td>
+					<td class='table-left-head'>
+						<input type='text' ng-model='edit.itemname' ng-readonly=true>
+					</td>
+				</tr>
+				<tr>
+					<td class='table-right-head'>
+					产品价格：
+					</td>
+					<td class='table-left-head'>
+						<input type='text' ng-model='edit.price'  ng-readonly=true>
+					</td>
+				</tr>
+				<tr>
+					<td class='table-right-head'>
+					订单状态：
+					</td>
+					<td class='table-left-head'>
+						<input type='text' ng-model='edit.statname' ng-readonly=true>
+					</td>
+				</tr>
+				<tr>
+					<td class='table-right-head'>
+					联系人名称：
+					</td>
+					<td class='table-left-head'>
+						<input type='text' ng-model='data.orderuser' ng-readonly=true>
+					</td>
+				</tr>
+				<tr>
+					<td class='table-right-head'>
+					联系号码：
+					</td>
+					<td class='table-left-head'>
+						<input type='text' ng-model='data.orderphone' ng-readonly=true>
+					</td>
+				</tr>
+				<tr>
+					<td class='table-right-head'>
+					预定日期：
+					</td>
+					<td class='table-left-head'>
+						<input type='text' ng-model='data.orderdate' ng-readonly=true>
+					</td>
+				</tr>
+				
+				<tr>
+					<td class='table-right-head'>
+					房间保留至：
+					</td>
+					<td class='table-left-head'>
+						<input type='text' ng-model='data.keepdate' ng-readonly=true>
+					</td>
+				</tr>
+
+				<tr>
+					<td class='table-right-head'>
+					入住时间：
+					</td>
+					<td class='table-left-head'>
+						<input type='text' ng-model='data.checkindate' ng-readonly=true>
+					</td>
+				</tr>
+				
+				<tr>
+					<td class='table-right-head'>
+					离店时间：
+					</td>
+					<td class='table-left-head'>
+						<input type='text' ng-model='data.leftdate' ng-readonly=true>
+					</td>
+				</tr>
+				<tr>
+					<td class='table-right-head'>
+					数量：
+					</td>
+					<td class='table-left-head'>
+						<input type='text' ng-model='data.ordercount' ng-readonly=true>
+					</td>
+				</tr>
+				<tr>
+					<td class='table-right-head'>
+					用餐时间：
+					</td>
+					<td class='table-left-head'>
+						<input type='text' ng-model='data.eatdate' ng-readonly=true>
+					</td>
+				</tr>
+				
+			</table>
+		</div>
+		<div class="modal-footer">
+			<button class="btn btn-warning cancel" ng-click="update('1')" ng-show='showconfirm'>确认订单</button>
+			<button class="btn btn-warning cancel" ng-click="update('2')" ng-show='showcancel'>取消订单</button>
+			<button class="btn btn-warning cancel" ng-click="update('3')" ng-show='showdeal'>订单成交</button>
+			<button class="btn btn-warning cancel" ng-click="close()">关闭</button>
+		</div>
+	</script>
+</div>

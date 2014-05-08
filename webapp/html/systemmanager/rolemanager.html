@@ -1,0 +1,97 @@
+<!-- <script src="users.js"></script> -->
+<div ng-controller="roleCtrl">
+	<div class='gridbuttonDiv'>
+		<button ng-click='add()' class='btn'>
+			<img src="img/icons/edit_add.png" />新增
+		</button>
+		<button ng-click='edit()' class='btn'>
+			<img src="img/icons/pencil.png" />修改
+		</button>
+		<button ng-click='del()' class='btn'>
+			<img src="img/icons/edit_remove.png" />删除
+		</button>
+		<button ng-click='role_menu()' class='btn'>
+			<img src="img/icons/edit_remove.png" />菜单授权
+		</button>
+		<input type='text' ng-model='queryItem' class='queryinput'>
+		<button ng-click='query()' class='btn btn_add'>
+			<img src="img/icons/query.png" />查询
+		</button>
+	</div>
+	<div class="gridStyle" ng-grid="gridOptions"></div>
+	<div>
+		<div class='totalText'>共{{page.rowcount}}行{{page.pagecount}}页</div>
+		<pagination first-text='首页' previous-text='前一页' next-text='下一页'
+			last-text='尾页' boundary-links="true" total-items="page.rowcount"
+			num-pages="page.pagecount" page="page.currentpage"
+			items-per-page="page.pagesize"></pagination>
+	</div>
+	<script type="text/ng-template" id="roleContent.html">
+		<div class='closebuttondiv'>
+			<a ng-click='close()' class="panel-tool-close" href="javascript:void(0)"></a>
+		</div>
+		<div class='modal-header'>
+			<img ng-src="{{ico}}"/><span style='margin-left:4px;'>{{title}}</span>
+		</div>
+		<div class="modal-body" >
+			<table >
+				<tr>
+					<td colspan=2 style='align:center;'>
+						<alert type="alerttype" ng-show='showalert'>{{msg}}</alert>
+					</td>
+				</tr>
+				<tr>
+					<td colspan=2 style='align:center;'>
+						<alert type="alerttype" ng-show='showmenuid'>{{edit.menuid}}</alert>
+					</td>
+				</tr>
+				<tr>
+					<td  class='table-right-head'>
+					角色名称：
+					</td>
+					<td class='table-left-head'>
+						<input type='text' ng-model='edit.rolename'>
+					</td>
+				</tr>
+				<tr>
+					<td class='table-right-head'>
+					有效性：
+					</td>
+					<td class='table-left-head'>
+						<input type='checkbox' ng-model='edit.enabled'>
+					</td>
+				</tr>
+				
+			</table>
+		</div>
+		<div class="modal-footer">
+			<button class="btn btn-warning cancel" ng-click="save()">保存</button>
+			<button class="btn btn-warning cancel" ng-click="reset()">重置</button>
+			<button class="btn btn-warning cancel" ng-click="close()">关闭</button>
+		</div>
+	</script>
+
+	<script type="text/ng-template" id="role_menuContent.html">
+		<div class='closebuttondiv'>
+			<a ng-click='close()' class="panel-tool-close" href="javascript:void(0)"></a>
+		</div>
+		<div class='modal-header' >
+			<img ng-src="{{ico}}"/><span style='margin-left:4px;'>{{title}}</span>
+		</div>
+		<div class="modal-body" style="height:500px">
+			<div class='gridbuttonDiv'>
+			<button ng-click='add()' class='btn'><img src="img/icons/edit_add.png"/>授权</button>
+			<input type='text' ng-model='queryItem' class='queryinput'>
+			<button ng-click='query()' class='btn btn_add'><img src="img/icons/query.png"/>查询</button>
+		</div>
+		<div class="gridStyle" ng-grid="gridOptions"></div>
+		<div>
+		<div class='totalText'>共{{page.rowcount}}行{{page.pagecount}}页</div>
+			<pagination first-text ='首页' previous-text='前一页' next-text='下一页' last-text='尾页' boundary-links="true" 
+			total-items="page.rowcount"
+		 	num-pages="page.pagecount" page="page.currentpage" items-per-page="page.pagesize"></pagination>
+		</div>
+		</div>
+		
+	</script>
+</div>

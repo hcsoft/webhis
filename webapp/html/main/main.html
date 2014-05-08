@@ -1,0 +1,43 @@
+<div class='mainbody'>
+	<div style="height: 40px; " >
+		<img src="img/icons/201101251540294293.png" style="margin:0px" align="absmiddle">
+		<font style="margin-top: 10px ; font-weight: bold; font-size: 16px; color: #44454a;">管理系统</font>
+		<p style="margin-left:10px;margin-right:10px;float: right; color: gray;">
+			<a ng-click='logout()'>退出系统</a>
+		</p>
+		<p style="margin-left:10px;float: right; color: gray; ">用户：{{username}}</p>
+	</div>
+	<div class='leftmenu'>
+ 	  <div class="accordion-group ng-scope" ng-repeat="menu in menus" ng-style="menu.style">  
+	  	<div class="accordion-heading">
+			<a class="accordion-toggle ng-binding" ng-click="isOpen = !isOpen" ><img ng-src='{{menu.icon}}'style='margin:0 5px 4px 0'>{{menu.text}}</a>
+		</div>  
+		<div class="accordion-body collapse" collapse="!isOpen" style="height: auto;">    
+			<div class="accordion-inner" >
+				<div ng-repeat="child in menu.child" class="menuitem ng-scope">
+					<div  style='cursor: pointer;'>
+						<a href='' ng-click="clickmenu(child.text,child.url,child.js)"> 
+							<img  ng-src="{{child.img}}">
+							<div  ng-bind="child.text" ></div>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>  
+	   </div>
+	</div>
+	<ul class="dropdown-menu">
+	    <li>
+	      <a >关闭</a>
+	    </li>
+	  </ul>
+	<div class='tabcontent'>
+		<tabset>
+			<tab heading="简介">管理系统</tab>
+			<tab ng-repeat="pane in panes"  active="pane.active">
+				<tab-heading>{{pane.title}} <a ng-show='pane.active' ng-click="closetab($index)" href=''><i class="ext-icon-close"></i></a></tab-heading>
+				<div ng-include='pane.url' style='width:100%;height:90%' ></div>
+			</tab>
+		</tabset>
+	</div>
+</div>

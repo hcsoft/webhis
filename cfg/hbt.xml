@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+                     http://www.springframework.org/schema/beans/spring-beans.xsd 
+                     http://www.springframework.org/schema/tx 
+                     http://www.springframework.org/schema/tx/spring-tx.xsd 
+                     http://www.springframework.org/schema/aop 
+                     http://www.springframework.org/schema/aop/spring-aop.xsd
+				     http://www.springframework.org/schema/context
+				     http://www.springframework.org/schema/context/spring-context.xsd
+				     http://www.springframework.org/schema/data/jpa 
+				     http://www.springframework.org/schema/data/jpa/spring-jpa-1.0.xsd">
+
+
+
+
+	<tx:annotation-driven transaction-manager="transactionManager" />
+
+	<!-- ******************************************************************** -->
+	<!-- PropertyConfigurer for the DAO -->
+	<!-- ******************************************************************** -->
+	<bean id="propertyConfigurer"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="location" value="classpath:db.properties" />
+	</bean>
+
+	<!-- ******************************************************************** -->
+	<!-- Setup the transaction manager -->
+	<!-- ******************************************************************** -->
+	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+		<property name="entityManagerFactory" ref="entityManagerFactory" />
+	</bean>
+
+	<!-- ******************************************************************** -->
+	<!-- Setup each data source -->
+	<!-- ******************************************************************** -->
+
+	<!-- 数据源 -->
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName" value="${driverClassName}" />
+		<property name="url" value="${url}" />
+		<property name="username" value="${username}" />
+		<property name="password" value="${password}" />
+		<property name="maxActive" value="${maxActive}" />
+		<property name="connectionInitSqls">
+        	<list>
+        		<value>ALTER SESSION SET CURRENT_SCHEMA = "healthplatform"</value>
+        	</list>
+        </property>
+	</bean>
+	<!-- <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource"> 
+		<property name="driverClassName" value="${connection.driver_class}" /> <property 
+		name="url" value="${connection.url}" /> <property name="username" value="${connection.username}" 
+		/> <property name="password" value="${connection.password}" /> </bean> -->
+	<!-- ******************************************************************** -->
+	<!-- Setup each persistence unit -->
+	<!-- ******************************************************************** -->
+
+	<!-- Configure a JPA vendor adapter -->
+	<bean id="openJpaVendorAdapter" class="org.springframework.orm.jpa.vendor.OpenJpaVendorAdapter">
+		<property name="showSql" value="${db.show_sql}" />
+		<property name="generateDdl" value="${db.generateDdl}" />
+		<property name="databasePlatform" value="${db.dialect}" />
+	</bean>
+
+	<!-- EntityManager Factory that brings together the persistence unit, datasource, 
+		and JPA Vendor -->
+	<bean id="entityManagerFactory"
+		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="jpaVendorAdapter" ref="openJpaVendorAdapter" />
+		<property name="packagesToScan" value="hcsoft.db.vo" />
+	</bean>
+
+	<bean id="sharedEntityManager"
+		class="org.springframework.orm.jpa.support.SharedEntityManagerBean">
+		<property name="entityManagerFactory" ref="entityManagerFactory" />
+	</bean>
+
+</beans>

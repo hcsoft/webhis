@@ -1,0 +1,329 @@
+body {
+	font: 14px/1.8 "微软雅黑";
+	color: #010101;
+}
+ ul li{
+ 	font-size: 16px;
+ }
+.star1 {
+	width: 16px !important;
+	background: url(../img/star-on.png);
+	height: 25px;
+	display: inline-block;
+	margin-left: 5px;
+	vertical-align: middle;
+}
+
+.ui-title {
+	overflow: visible !important;
+}
+
+.star2 {
+	width: 32px !important;
+	background: url(../img/star-on.png);
+	height: 25px;
+	display: inline-block;
+	margin-left: 5px;
+	vertical-align: middle;
+}
+
+.star3 {
+	width: 48px !important;
+	background: url(../img/star-on.png);
+	height: 25px;
+	display: inline-block;
+	margin-left: 5px;
+	vertical-align: middle;
+}
+
+.star4 {
+	width: 64px !important;
+	background: url(../img/star-on.png);
+	height: 25px;
+	display: inline-block;
+	margin-left: 5px;
+	vertical-align: middle;
+}
+
+.star5 {
+	width: 90px !important;
+	background: url(../img/star-on.png);
+	height: 25px;
+	display: inline-block;
+	margin-left: 5px;
+	vertical-align: middle;
+}
+
+.ui-bar {
+	text-align: center;
+	background: url(../img/dd_bj.jpg) no-repeat;
+	background-size: 100% 100%;
+}
+
+.main_menu {
+	font-size: 12px;
+}
+
+.ui-content {
+	padding: 0px;
+}
+
+.device {
+	width: 100%;
+	height: 250px;
+	padding: 0px 0px 30px 0px;
+	border-radius: 20px;
+	position: relative;
+}
+
+.device-nopagination {
+	width: 100%;
+	height: 250px;
+	padding: 0px 0px 0px 0px;
+	border-radius: 20px;
+	position: relative;
+}
+
+.swiper-container {
+	height: 250px;
+	width: 100%;
+}
+
+.content-slide {
+	padding: 20px;
+	color: #fff;
+}
+
+.title {
+	font-size: 25px;
+	margin-bottom: 10px;
+}
+
+.pagination {
+	/*position: absolute;*/
+	left: 0;
+	text-align: center;
+	/*bottom: 5px;*/
+	width: 100%;
+}
+
+.swiper-pagination-switch {
+	display: inline-block;
+	width: 10px;
+	height: 10px;
+	border-radius: 10px;
+	background: #999;
+	box-shadow: 0px 1px 2px #555 inset;
+	margin: 0 3px;
+	cursor: pointer;
+}
+
+.swiper-active-switch {
+	background: #fff;
+}
+
+.swiper-slide>img {
+	width: 100%;
+	height: 100%;
+}
+
+#main .ui-grid-b .ui-btn {
+	margin: 0px !important;
+}
+
+#main .ui-btn-inner {
+	font-size: 12px;
+	font-size: 16px;
+	padding: 0px;
+	min-width: 0;
+	display: block;
+	position: relative;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+	zoom: 1;
+}
+
+#main .ui-btn-up-c {
+	background: transparent !important;
+	border: 0 !important;
+}
+
+#main .ui-btn-corner-all {
+	border-radius: 0 !important;
+	-webkit-border-radius: 0 !important;
+}
+
+#main .ui-shadow {
+	-moz-box-shadow: 0 0 0 /*{global-box-shadow-size}*/ rgba(0, 0, 0, 0.2)
+		/*{global-box-shadow-color}*/;
+	-webkit-box-shadow: 0 0 0 /*{global-box-shadow-size}*/  
+		 rgba(0, 0, 0, 0.2) /*{global-box-shadow-color}*/;
+	box-shadow: 0 0 0 /*{global-box-shadow-size}*/ rgba(0, 0, 0, 0.2)
+		/*{global-box-shadow-color}*/;
+}
+
+ .money {
+	color: #ff8400;
+	font-size: 16px;
+	line-height: 120%;
+	font-weight: bold;
+}
+
+#page1 .word,#page2 .word ,#booking .word{
+	color: #ff393c;
+	font-size: 12px;
+}
+.hasitem{
+	color: #ff393c;
+	font-size: 12px;
+}
+.noitem{
+	color: #333;
+	font-size: 12px;
+}
+.purchasebtn {
+	width: 100px;
+}
+
+ .btn-purchase  {
+	margin-top: 30px;
+}
+
+#follow ul,#contact ul,#purchase-promotions ul {
+	list-style-type: none;
+	font-size: 14px;
+	padding: 0;
+	text-indent: 40px;
+}
+
+#follow .contact li,#contact .contact li,#purchase-promotions .contact li {
+	line-height: 50px;
+	vertical-align: baseline;
+	border-bottom: 1px dashed #b5b0a9;
+}
+
+#follow ul li img,#contact ul li img,#purchase-promotions ul li img {
+	vertical-align: middle;
+}
+
+.contact ul {
+	list-style-type: none;
+	font-size: 14px;
+	padding: 20px 50px;
+	text-indent: 40px;
+}
+
+.contact li {
+	vertical-align: baseline;
+}
+
+#page4 li h4 {
+	text-align: center;
+}
+
+.red {
+	color: red;
+}
+
+.text_r {
+	text-align: right;
+}
+
+#page4 li img {
+	vertical-align: middle;
+}
+
+#page4 .joinbox {
+	border: 1px solid #beb8b4;
+	border-bottom: 0;
+	padding: 10px 15px 15px 15px;
+	background: #fff;
+}
+ .tooth {
+	height: 8px;
+	background: url(../img/tooth.png);
+}
+
+.joinbox a {
+	text-decoration: none;
+	color: #075ba9 !important;
+}
+
+.green {
+	font-weight: normal;
+	margin-left: 10px;
+	color: #4f9609;
+	text-align: left;
+	line-height: 50px;
+}
+
+#follow-wx-url {
+	color: #075ba9;
+	font: 14px/1.8 "微软雅黑";
+}
+
+#purchase-promotions .text-content {
+	width: 90%;
+	margin: 10px auto 0 auto;
+}
+
+ .focus {
+	width: 90%;
+	margin: 10px auto 0 auto;
+	border: 1px solid #a99a97;
+	border-radius: 5px;
+	background-color: rgba(221, 221, 220, 0.7);
+	box-shadow: inset 0 1px 4px #9c9a97;
+	list-style-type: none;
+	padding:0 10px;
+}
+ .focus li{
+ 	line-height:50px;
+ 	height:50px;
+ 	text-align: -webkit-match-parent;
+ }
+  .focus .ui-input-text{
+ 	width:55%;
+ 	margin:0px;
+ 	padding:0px;
+ 	display: inline-block;
+ 	vertical-align: middle;
+ }
+ #page4-list{
+ 	list-style-type: none;
+ 	width:90%;
+ 	padding:10px;
+	margin:0 auto;
+ }
+ 
+ .ui-link-inherit img{
+ 	margin:  18px 10px;
+ }
+ .title-text{
+ 	display:inline-block;
+ 	width:30%;
+ 	text-align:right;
+ }
+ .cancelbutton ,.submitbutton{
+ 	height:30px;
+ 	width:100px;
+ }
+ 
+ #purchase .ui-listview{
+ 	border:0px;
+ 	margin:0;
+ 	height:30px;
+ 	background:transparent;
+ }
+ 
+ #purchase .ui-block-b{
+ 	height:50px;
+ }
+ .countmoney{
+ 	display:inline-block;
+ 	width:55%;
+ }
+ .ui-body-c, .ui-overlay-c{
+color: #010101;
+ }

@@ -1,0 +1,5 @@
+/target/classes
+/target/test-classes
+src/main/java/szgr/wx/msgprocess/resp/bean/NewTest.java
+test.txt
+/target
